@@ -521,7 +521,7 @@ export default function Calendario() {
             <label>Hora de fin<input type="time" required value={googleEndTime} onChange={(event) => setGoogleEndTime(event.target.value)} /></label>
           </div>
           <label>Invitados (correos separados por coma)
-            <input type="email" multiple value={googleAttendees} onChange={(event) => setGoogleAttendees(event.target.value)} placeholder="federico@gmail.com, otra@gmail.com" />
+            <input type="email" multiple value={googleAttendees} onChange={(event) => setGoogleAttendees(event.target.value)} placeholder="ejemplo@gmail.com, otra@gmail.com" />
           </label>
           <p className="muted calendar-event-hint">Se usará tu zona horaria local. Google enviará las invitaciones por correo.</p>
           {googleActionError && <p className="calendar-api-error" role="alert">{googleActionError}</p>}
@@ -581,7 +581,7 @@ export default function Calendario() {
                   </div>
                 )}
                 <label>Invitados (correos separados por coma)
-                  <input value={attendeeDraft} onChange={(event) => setAttendeeDraft(event.target.value)} placeholder="federico@gmail.com, otra@gmail.com" />
+                  <input value={attendeeDraft} onChange={(event) => setAttendeeDraft(event.target.value)} placeholder="ejemplo@gmail.com, otra@gmail.com" />
                 </label>
                 <div className="calendar-event-actions">
                   <button type="button" onClick={() => setEditingGoogleEvent(false)} disabled={googleActionLoading}>Cancelar</button>

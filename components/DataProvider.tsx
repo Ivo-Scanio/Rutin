@@ -2,7 +2,11 @@
 import { createContext, useCallback, useContext, useEffect, useRef, useState } from "react";
 
 export type Todo = { id: string; text: string; done: boolean };
-export type Routine = { id: string; name: string };
+export type RoutineStep =
+  | { id: string; kind: "repetitions"; name: string; repetitions: number }
+  | { id: string; kind: "timed"; name: string; durationSeconds: number }
+  | { id: string; kind: "rest"; durationSeconds: number };
+export type Routine = { id: string; name: string; steps: RoutineStep[] };
 export type SessionPlan = {
   id: string;
   name: string;
@@ -87,7 +91,12 @@ export default function DataProvider({ children }: { children: React.ReactNode }
           ...DEFAULT,
           ...stored,
           todos: Array.isArray(stored.todos) ? stored.todos : [],
-          routines: Array.isArray(stored.routines) ? stored.routines : [],
+          routines: Array.isArray(stored.routines)
+            ? stored.routines.map((routine: Routine) => ({
+                ...routine,
+                steps: Array.isArray(routine.steps) ? routine.steps : [],
+              }))
+            : [],
           sessions: Array.isArray(stored.sessions) ? stored.sessions : [],
           calendarEvents: Array.isArray(stored.calendarEvents) ? stored.calendarEvents : [],
           sessionCategories: Array.isArray(stored.sessionCategories) ? stored.sessionCategories : DEFAULT.sessionCategories,

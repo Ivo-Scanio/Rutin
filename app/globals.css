@@ -98,6 +98,32 @@ input[type="checkbox"]:focus-visible { outline:2px solid var(--accent); outline-
 .session-timer { margin-top:12px; font-size:2rem; font-variant-numeric:tabular-nums; font-weight:700; }
 .session-summary-name { flex:1; }
 .status-complete { color:#80d6a0; }
+.routine-page-heading { margin-bottom:18px; }
+.routine-list { display:grid; gap:12px; }
+.routine-card { margin:0; }
+.routine-card-heading { display:flex; align-items:center; justify-content:space-between; gap:12px; margin-bottom:12px; }
+.routine-card-heading h3 { margin:0; overflow-wrap:anywhere; }
+.routine-card-heading > div { display:flex; flex:0 0 auto; gap:6px; }
+.routine-step-list { list-style:none; margin:0; padding:0; display:grid; gap:7px; }
+.routine-step-list li { display:flex; align-items:center; gap:10px; padding:9px 10px; background:rgba(255,255,255,.035); border:1px solid rgba(167,196,211,.1); border-radius:9px; }
+.routine-step-number { display:grid; place-items:center; flex:0 0 26px; width:26px; height:26px; color:var(--accent); background:rgba(34,211,238,.08); border-radius:50%; font-size:.82rem; font-weight:700; }
+.routine-step-info { display:grid; gap:3px; }
+.routine-step-info small { font-size:.82rem; }
+.routine-empty-state { padding:18px 0; text-align:center; }
+.routine-step-editor { min-width:0; margin:0; padding:12px; border:1px solid var(--line); border-radius:10px; }
+.routine-step-editor legend { padding:0 6px; color:var(--muted); }
+.routine-step-editor-list { display:grid; gap:10px; }
+.routine-step-editor-item { min-width:0; padding:10px; background:rgba(255,255,255,.025); border:1px solid rgba(167,196,211,.1); border-radius:9px; }
+.routine-step-editor-heading { display:flex; align-items:center; justify-content:space-between; gap:8px; margin-bottom:8px; }
+.routine-step-controls { display:flex; gap:5px; }
+.routine-step-controls button { min-width:34px; padding:4px 8px; }
+.routine-step-fields { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:9px; }
+.routine-step-fields label { min-width:0; display:grid; gap:5px; color:var(--muted); font-size:.88rem; }
+.routine-step-fields label:first-child { grid-column:1 / -1; }
+.routine-step-fields select { width:100%; min-width:0; padding:8px 12px; color:var(--text); background:var(--panel); border:1px solid var(--line); border-radius:8px; }
+.routine-add-step-actions { display:flex; flex-wrap:wrap; gap:7px; margin-top:10px; }
+.routine-add-step-actions button { padding:7px 9px; font-size:.88rem; }
+.routine-dialog { width:min(620px,calc(100vw - 32px)); }
 .calendar-day { min-height:88px; text-align:left; padding:8px !important; cursor:pointer; }
 .calendar-day-number { display:flex; align-items:center; justify-content:center; gap:4px; width:max-content; min-width:27px; height:27px; margin:0 auto; padding:0; color:var(--muted); appearance:none; -webkit-appearance:none; background:transparent; border:0; border-radius:0; box-shadow:none; backdrop-filter:none; -webkit-backdrop-filter:none; line-height:1; font-variant-numeric:tabular-nums; }
 .cal .calendar-day .calendar-day-number:hover, .cal .calendar-day .calendar-day-number:focus, .cal .calendar-day .calendar-day-number:active { color:var(--accent); background:transparent; border:0; box-shadow:none; }
@@ -189,9 +215,15 @@ input[type="checkbox"]:focus-visible { outline:2px solid var(--accent); outline-
   .session-plan-info { min-width:calc(100% - 32px); }
   .calendar-day { min-height:62px; padding:5px !important; }
   .calendar-toolbar { display:grid; grid-template-columns:1fr; }
-  .calendar-month-nav { width:100%; margin-bottom:0; }
+  .calendar-month-nav { width:100%; margin-bottom:0; justify-content:center; }
   .calendar-actions { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); width:100%; }
   .calendar-actions button { width:100%; }
   .calendar-time-fields { grid-template-columns:1fr 1fr; }
+  .routine-card-heading { align-items:flex-start; flex-wrap:wrap; }
+  .routine-card-heading > div { width:100%; }
+  .routine-card-heading > div button { flex:1; }
+  .routine-step-fields { grid-template-columns:1fr; }
+  .routine-step-fields label:first-child { grid-column:auto; }
+  .routine-dialog { inset:0; width:100vw; height:100dvh; max-width:none; max-height:none; margin:0; padding:20px 16px; border-radius:0; }
   .active-session-peek { align-items:flex-start; flex-direction:column; }
 }
