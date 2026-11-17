@@ -1,5 +1,6 @@
 "use client";
 import { createContext, useCallback, useContext, useEffect, useRef, useState } from "react";
+import { signIn, signOut } from "next-auth/react";
 
 export type Todo = { id: string; text: string; done: boolean };
 export type RoutineStep =
@@ -161,15 +162,32 @@ export default function DataProvider({ children }: { children: React.ReactNode }
     if (loaded.current) save(latestData.current);
     else retryLoad();
   }, [retryLoad, save]);
+  const reauthorizeGoogle = async () => {
+    await signOut({ redirect: false });
+    await signIn("google", { callbackUrl: "/todos" });
+  };
+  const needsDrivePermission = loadError?.includes("ACCESS_TOKEN_SCOPE_INSUFFICIENT")
+    || loadError?.toLowerCase().includes("insufficient authentication scopes");
 
   return (
     <C.Provider value={{ data, update, loading, saving, loadError, saveError, retryLoad, retrySave }}>
       {loadError ? (
         <div className="data-error" role="alert">
           <h2>No se pudieron cargar tus datos</h2>
-          <p>{loadError}</p>
+          {needsDrivePermission ? (
+            <>
+              <p>Google no concedió a Rutin permiso para acceder a tus datos guardados. No hace falta instalar nada.</p>
+              <p>Cierra sesión y vuelve a iniciar sesión con Google. Cuando aparezca la pantalla de permisos, acepta el acceso solicitado por Rutin.</p>
+              <button onClick={reauthorizeGoogle}>Volver a autorizar Google</button>
+              <p>Si Google no vuelve a mostrar los permisos, <a href="https://myaccount.google.com/permissions" target="_blank" rel="noreferrer">quita el acceso anterior de Rutin en tu cuenta de Google</a> y vuelve a iniciar sesión.</p>
+              <details>
+                <summary>Detalles técnicos</summary>
+                <p>{loadError}</p>
+              </details>
+            </>
+          ) : <p>{loadError}</p>}
           <p>No se modificó ni reemplazó la información guardada.</p>
-          <button onClick={retryLoad}>Reintentar</button>
+          {!needsDrivePermission && <button onClick={retryLoad}>Reintentar</button>}
         </div>
       ) : children}
       {saveError ? (
