@@ -24,7 +24,7 @@ export default function Todos() {
         {data.todos.map((t) => (
           <li key={t.id}>
             <label className={t.done ? "done" : ""}>
-              <input type="checkbox" checked={t.done}
+              <input className="todo-checkbox" type="checkbox" checked={t.done}
                 onChange={() => update((d) => ({ ...d, todos: d.todos.map((x) => (x.id === t.id ? { ...x, done: !x.done } : x)) }))} />
               {t.text}
             </label>

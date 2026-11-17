@@ -40,6 +40,7 @@ input[type="checkbox"]:focus-visible { outline:2px solid var(--accent); outline-
 .row { margin-bottom:16px; } .row input { flex:1; }
 .list { list-style:none; padding:0; display:grid; gap:6px; } .list li { display:flex; justify-content:space-between; align-items:center; padding:8px 12px; background:rgba(255,255,255,.035); border:1px solid rgba(167,196,211,.1); border-radius:8px; backdrop-filter:blur(12px); }
 .done { text-decoration:line-through; color:var(--muted); }
+input[type="checkbox"].todo-checkbox { margin-right:8px; }
 .cal { display:grid; grid-template-columns:repeat(7,1fr); gap:4px; text-align:center; } .cal div { padding:12px 0; background:rgba(255,255,255,.035); border:1px solid rgba(167,196,211,.1); border-radius:6px; backdrop-filter:blur(12px); } .cal .calendar-day.today, .cal .calendar-day.selected { background:rgba(34,211,238,.055); color:var(--text); border-color:rgba(34,211,238,.35); }
 .muted { color:var(--muted); }
 .session-panel { margin:20px 0; padding:16px; background:rgba(19,31,43,.58); border:1px solid rgba(167,196,211,.18); border-radius:14px; box-shadow:0 12px 32px rgba(0,0,0,.22),inset 0 1px 0 rgba(255,255,255,.055); backdrop-filter:blur(18px); -webkit-backdrop-filter:blur(18px); transition:border-color .18s,box-shadow .18s; }
